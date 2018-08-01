@@ -27,3 +27,15 @@ Application code currently has following rules:
 1. Implement an offer on group of products, eg. "Buy 2 get 1 free" on specific products identified by product code starting with "BULK_BUY_2_GET_1"
 
 1. Implement a discount of 5% which is applicable on total purchase above $500
+
+## Setup
+
+* `python3 -m venv app`
+* `source app/bin/activate`
+* `pip install --upgrade pip`
+* `pip install -r requirements.txt`
+
+## Done
+
+* `pip freeze > requirements.txt`
+* `deactivate`
