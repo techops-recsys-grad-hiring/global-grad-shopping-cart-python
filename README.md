@@ -35,6 +35,10 @@ Application code currently has following rules:
 * `pip install --upgrade pip`
 * `pip install -r requirements.txt`
 
+## Run Tests
+
+* `python -m unittest`
+
 ## Done
 
 * `pip freeze > requirements.txt`
