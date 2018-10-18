@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Remove previous work, progress by candidate
+git checkout . && git clean  -f
+
+# Get anything that might have been added to the repository
+git pull -r
+
+python3 -m venv ./.app && source ./.app/bin/activate
+
+python -m unittest
+
+
+printf "To run tests execute \npython -m unittest\n"

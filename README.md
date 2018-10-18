@@ -29,17 +29,11 @@ Application code currently has following rules:
 1. Implement a discount of 5% which is applicable on total purchase above $500
 
 ## Setup
-
-* `python3 -m venv app`
-* `source app/bin/activate`
-* `pip install --upgrade pip`
-* `pip install -r requirements.txt`
+`source ./start`
 
 ## Run Tests
 
 * `python -m unittest`
 
 ## Done
-
-* `pip freeze > requirements.txt`
-* `deactivate`
+`source ./done && deactivate`
