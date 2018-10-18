@@ -6,7 +6,7 @@ from src.model.product import Product
 from src.model.shoppingcart import ShoppingCart
 
 
-class ShoppingCartServiceTest(unittest.TestCase):
+class ShoppingCartTest(unittest.TestCase):
     def test_should_validate_information_passed_on_to_confirmation(self):
         cart = ShoppingCart(Customer("test"), [Product(100, "DIS_10_ABCD", "T")], "ANYTHING")
         fake_order_service = OrderService
