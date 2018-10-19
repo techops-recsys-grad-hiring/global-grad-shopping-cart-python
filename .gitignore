@@ -109,3 +109,4 @@ venv.bak/
 # venv name
 app/
 .app/
+*.swp
