@@ -1,5 +1,6 @@
 from src.model.product import Product
 from src.model.customer import Customer
+from src.service.order_service import OrderService
 
 
 class ShoppingCart:
@@ -8,10 +9,12 @@ class ShoppingCart:
         self.products = products
         self.customer = customer
         self.cart_state = cart_state
-        return
 
     def set_order_service(self, order_service):
         self.order_service = order_service
+
+    def add_product(self, product):
+        self.products.append(product)
 
     def remove_product(self, product=Product):
         self.products = [p for p in self.products if p.product_code == product.product_code]
@@ -30,6 +33,5 @@ class ShoppingCart:
             else:
                 loyalty_points_earned += (product.price / 5)
                 discount = 0.00
-
-        total_price += product.price - discount
-        return total_price
+            total_price += product.price - discount
+        return self.order_service.show_confirmation(self.customer, self.products, total_price, loyalty_points_earned)
