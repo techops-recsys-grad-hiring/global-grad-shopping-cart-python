@@ -1,9 +1,4 @@
-import src.model.customer as Customer
-
-
 class Order:
-    def __init__(self, customer=Customer, products=[], totalPrice = 0):
-        self.customer = customer
-        self.products = products
+    def __init__(self, loyaltyPointsEarned=0, totalPrice = 0):
+        self.loyaltyPoints = loyaltyPointsEarned
         self.total = totalPrice
-        self.order_status = "ORDER_PLACED"
