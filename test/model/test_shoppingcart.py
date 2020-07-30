@@ -55,4 +55,4 @@ class ShoppingCartTest(unittest.TestCase):
 
         order = cart.checkout()
 
-        self.assertEqual(6.666666666666667, order.loyaltyPoints)
+        self.assertEqual(6, order.loyaltyPoints)
