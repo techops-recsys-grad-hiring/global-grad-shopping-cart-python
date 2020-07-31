@@ -1,24 +1,58 @@
-from src.service.order_service import OrderService
 import unittest
 
 from src.model.customer import Customer
 from src.model.product import Product
 from src.model.shoppingcart import ShoppingCart
 
+CUSTOMER = Customer("test")
+PRICE = 100
+PRODUCT = "T"
 
 class ShoppingCartTest(unittest.TestCase):
-    def test_should_validate_information_passed_on_to_confirmation(self):
-        cart = ShoppingCart(Customer("test"), [Product(100, "DIS_10_ABCD", "T")], "ANYTHING")
+    def test_should_calculate_price_with_no_discount(self):
+        products = [Product(PRICE, "", PRODUCT)]
+        cart = ShoppingCart(CUSTOMER, products)
 
-        order_service = FakeOrderService() 
+        order = cart.checkout()
 
-        cart.set_order_service(order_service)
+        self.assertEqual(100.00, order.total)
 
-        total = cart.checkout()
-        self.assertEqual(90.00, order_service.total_price)
+    def test_should_calculate_loyalty_points_with_no_discount(self):
+        products = [Product(PRICE, "", PRODUCT)]
+        cart = ShoppingCart(CUSTOMER, products)
 
+        order = cart.checkout()
 
-class FakeOrderService(OrderService):
+        self.assertEqual(20, order.loyaltyPoints)
 
-    def show_confirmation(self, customer, products, total_price, loyalty_points_earned):
-        self.total_price = total_price
+    def test_should_calculate_price_with_10_percent_discount(self):
+        products = [Product(PRICE, "DIS_10_ABCD", PRODUCT)]
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(90.00, order.total)
+
+    def test_should_calculate_loyalty_points_with_10_percent_discount(self):
+        products = [Product(PRICE, "DIS_10_ABCD", PRODUCT)]
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(10, order.loyaltyPoints)
+
+    def test_should_calculate_price_with_15_percent_discount(self):
+        products = [Product(PRICE, "DIS_15_ABCD", PRODUCT)]
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(85.00, order.total)
+
+    def test_should_calculate_loyalty_points_with_15_percent_discount(self):
+        products = [Product(PRICE, "DIS_15_ABCD", PRODUCT)]
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(6, order.loyaltyPoints)
