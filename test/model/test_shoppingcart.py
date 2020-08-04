@@ -8,6 +8,7 @@ CUSTOMER = Customer("test")
 PRICE = 100
 PRODUCT = "T"
 
+
 class ShoppingCartTest(unittest.TestCase):
     def test_should_calculate_price_with_no_discount(self):
         products = [Product(PRICE, "", PRODUCT)]
@@ -23,7 +24,7 @@ class ShoppingCartTest(unittest.TestCase):
 
         order = cart.checkout()
 
-        self.assertEqual(20, order.loyaltyPoints)
+        self.assertEqual(20, order.loyalty_points)
 
     def test_should_calculate_price_with_10_percent_discount(self):
         products = [Product(PRICE, "DIS_10_ABCD", PRODUCT)]
@@ -39,7 +40,7 @@ class ShoppingCartTest(unittest.TestCase):
 
         order = cart.checkout()
 
-        self.assertEqual(10, order.loyaltyPoints)
+        self.assertEqual(10, order.loyalty_points)
 
     def test_should_calculate_price_with_15_percent_discount(self):
         products = [Product(PRICE, "DIS_15_ABCD", PRODUCT)]
@@ -55,4 +56,4 @@ class ShoppingCartTest(unittest.TestCase):
 
         order = cart.checkout()
 
-        self.assertEqual(6, order.loyaltyPoints)
+        self.assertEqual(6, order.loyalty_points)
