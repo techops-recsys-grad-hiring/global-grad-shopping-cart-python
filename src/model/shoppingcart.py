@@ -4,8 +4,8 @@ from src.model.order import Order
 
 
 class ShoppingCart:
-    def __init__(self, customer=Customer, products=[]):
-        self.products = products
+    def __init__(self, customer=Customer, products=None):
+        self.products = [] if products is None else products
         self.customer = customer
 
     def add_product(self, product):
