@@ -57,3 +57,19 @@ class ShoppingCartTest(unittest.TestCase):
         order = cart.checkout()
 
         self.assertEqual(6, order.loyalty_points)
+
+    def test_should_calculate_price_with_20_percent_discount(self):
+        products = [Product(PRICE, "DIS_20_ABCD", PRODUCT)]
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(80.00, order.total)
+
+    def test_should_calculate_loyalty_points_with_20_percent_discount(self):
+        products = [Product(PRICE, "DIS_20_ABCD", PRODUCT)]
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(5, order.loyalty_points)

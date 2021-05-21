@@ -22,6 +22,9 @@ class ShoppingCart:
             elif product.product_code.startswith("DIS_15"):
                 loyalty_points_earned += (product.price / 15)
                 discount = product.price * 0.15
+            elif product.product_code.startswith("DIS_20"):
+                loyalty_points_earned += (product.price / 20)
+                discount = product.price * 0.2
             else:
                 loyalty_points_earned += (product.price / 5)
                 discount = 0.00
