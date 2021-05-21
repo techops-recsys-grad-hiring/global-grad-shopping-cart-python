@@ -110,3 +110,101 @@ class ShoppingCartTest(unittest.TestCase):
         order = cart.checkout()
 
         self.assertEqual(400.00, order.total)
+
+    def test_should_calculate_price_over_500(self):
+        products = [Product(PRICE, "", PRODUCT)] * 6
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(570.00, order.total)
+
+    def test_should_calculate_price_over_500_edge_500(self):
+        products = [Product(PRICE, "", PRODUCT)] * 5
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(500.00, order.total)
+
+    def test_should_calculate_price_over_500_400(self):
+        products = [Product(PRICE, "", PRODUCT)] * 4
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(400.00, order.total)
+
+    def test_should_calculate_price_over_500_with_20_discount(self):
+        products = [Product(PRICE, "DIS_20", PRODUCT)] * 8
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(608.0, order.total)
+
+    def test_should_calculate_price_under_500_with_20_discount(self):
+        products = [Product(PRICE, "DIS_20", PRODUCT)] * 5
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(400.0, order.total)
+
+    def test_should_calculate_price_over_500_with_15_discount(self):
+        products = [Product(PRICE, "DIS_15", PRODUCT)] * 8
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(646.0, order.total)
+    
+    def test_should_calculate_price_under_500_with_15_discount(self):
+        products = [Product(PRICE, "DIS_15", PRODUCT)] * 5
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(425.0, order.total)
+
+    def test_should_calculate_price_over_500_with_10_discount(self):
+        products = [Product(PRICE, "DIS_10", PRODUCT)] * 8
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(684.0, order.total)
+    
+    def test_should_calculate_price_under_500_with_10_discount(self):
+        products = [Product(PRICE, "DIS_10", PRODUCT)] * 5
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(450.0, order.total)
+
+    def test_should_calculate_price_over_500_with_buy_2_get_1(self):
+        products = [Product(PRICE, "BULK_BUY_2_GET_1", PRODUCT)] * 8
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(570.0, order.total)
+
+    def test_should_calculate_price_under_500_with_buy_2_get_1(self):
+        products = [Product(PRICE, "BULK_BUY_2_GET_1", PRODUCT)] * 5
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(400.0, order.total)

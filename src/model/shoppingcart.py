@@ -36,6 +36,9 @@ class ShoppingCart:
                 loyalty_points_earned += (product.price / 5)
                 discount = 0.00
             total_price += product.price - discount
+
+        if total_price > 500:
+            total_price = total_price * 0.95
         return Order(int(loyalty_points_earned), total_price)
 
 
