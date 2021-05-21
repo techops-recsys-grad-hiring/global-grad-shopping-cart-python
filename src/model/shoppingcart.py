@@ -14,6 +14,8 @@ class ShoppingCart:
     def checkout(self):
         total_price = 0.00
         loyalty_points_earned = 0.00
+        buy_2_get_1_count = 0
+        
         for product in self.products:
             discount = 0.00
             if product.product_code.startswith("DIS_10"):
@@ -25,6 +27,11 @@ class ShoppingCart:
             elif product.product_code.startswith("DIS_20"):
                 loyalty_points_earned += (product.price / 20)
                 discount = product.price * 0.2
+            elif product.product_code.startswith("BULK_BUY_2_GET_1"):
+                buy_2_get_1_count += 1
+                if buy_2_get_1_count == 3:
+                    discount = product.price
+                    buy_2_get_1_count = 0
             else:
                 loyalty_points_earned += (product.price / 5)
                 discount = 0.00

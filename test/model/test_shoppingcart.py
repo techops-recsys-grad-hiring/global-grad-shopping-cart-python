@@ -73,3 +73,40 @@ class ShoppingCartTest(unittest.TestCase):
         order = cart.checkout()
 
         self.assertEqual(5, order.loyalty_points)
+
+    def test_should_calculate_price_with_buy_2_get_1_discount(self):
+        products = [Product(PRICE, "BULK_BUY_2_GET_1", PRODUCT)] * 3
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(200.00, order.total)
+
+    def test_should_calculate_price_with_buy_2_get_1_discount_edge_1(self):
+        products = [Product(PRICE, "BULK_BUY_2_GET_1", PRODUCT)] * 1
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(100.00, order.total)
+
+
+    def test_should_calculate_price_with_buy_2_get_1_discount_edge_2(self):
+        products = [Product(PRICE, "BULK_BUY_2_GET_1", PRODUCT)] * 2
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(200.00, order.total)
+
+    def test_should_calculate_price_with_buy_2_get_1_discount_edge_5(self):
+        products = [Product(PRICE, "BULK_BUY_2_GET_1", PRODUCT)] * 5
+
+        cart = ShoppingCart(CUSTOMER, products)
+
+        order = cart.checkout()
+
+        self.assertEqual(400.00, order.total)
