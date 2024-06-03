@@ -6,7 +6,7 @@ from src.model.shoppingcart import ShoppingCart
 
 CUSTOMER = Customer("test")
 PRICE = 100
-PRODUCT = "T"
+PRODUCT = "Product"
 
 
 class ShoppingCartTest(unittest.TestCase):
