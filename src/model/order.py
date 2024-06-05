@@ -4,4 +4,4 @@ class Order:
         self.total = total_price
 
     def __str__(self):
-        return "Total price: %s \nWill receive %s" % (self.total, self.loyalty_points)
+        return "Total price: %s \nWill receive %s loyalty points" % (self.total, self.loyalty_points)
